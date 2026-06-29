@@ -36,7 +36,7 @@ class John {
     let collectionCount = 0;
 
     let numOfOnes = this.inventory.get('1');
-    console.log("Number of Ones:", numOfOnes)
+    console.log("Number of Layers:", numOfOnes)
     if (!numOfOnes) return 0;
 
     for (let i = 0; i < numOfOnes; i++) {
@@ -59,7 +59,7 @@ class John {
           break;
         }
       }
-      console.log(layerCount);
+      console.log("Layer Count:", layerCount);
       collectionCount += layerCount;
     }
 
@@ -69,7 +69,7 @@ class John {
 }
 
 function parser() {
-  const input = fs.readFileSync("./candy-input1.txt", "utf-8");
+  const input = fs.readFileSync("./candy-input0.txt", "utf-8");
   const inputArr = input.split("\n").slice(1);
   console.log(inputArr);
   return inputArr;
