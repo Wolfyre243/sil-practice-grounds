@@ -31,45 +31,33 @@ class John {
       .map((n) => parseInt(n))
       .sort((a, b) => a - b)
       .filter((n) => this.inventory.get(n.toString()) > 0);
-    console.log("Inventory Keys:", invKeys);
+    // console.log("Inventory Keys:", invKeys);
 
     let collectionCount = 0;
 
-    let numOfOnes = this.inventory.get('1');
-    console.log("Number of Layers:", numOfOnes)
-    if (!numOfOnes) return 0;
+    for (let i = 0; i < invKeys.length; i++) {
+      // Edit the layer
+      // i denotes the layer number, j denotes the position
+      const candyCount = this.inventory.get(invKeys[i].toString());
 
-    for (let i = 0; i < numOfOnes; i++) {
-      console.log("Layer " + i)
-      let layerCount = 0;
-      for (let j = 0; j < invKeys.length; j++) {
-        // Edit the layer
-        // j denotes the layer number, i denotes the position
-        const candyCount = this.inventory.get(invKeys[j].toString()) - i;
-
-        // if (candyCount <= 0) console.log("hi");
-        if (candyCount <= 0) {
-          break;
-        };
-        if (invKeys[j] == j + 1) {
-          console.log(`Candy ${invKeys[j]}: ${candyCount}`)
-          layerCount++;
-        }
-        if (invKeys[j] != j + 1) {
-          break;
-        }
+      // if (candyCount <= 0) console.log("hi");
+      if (candyCount <= 0) {
+        break;
       }
-      console.log("Layer Count:", layerCount);
-      collectionCount += layerCount;
+      if (invKeys[i] == i + 1) {
+        // console.log(`Candy ${invKeys[i]}: ${candyCount}`)
+        collectionCount++;
+      }
+      if (invKeys[i] != i + 1) {
+        break;
+      }
     }
-
-    console.log("Collection Count:", collectionCount)
     return collectionCount;
   }
 }
 
 function parser() {
-  const input = fs.readFileSync("./candy-input0.txt", "utf-8");
+  const input = fs.readFileSync("./candy-input2.txt", "utf-8");
   const inputArr = input.split("\n").slice(1);
   console.log(inputArr);
   return inputArr;
